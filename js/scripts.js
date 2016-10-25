@@ -18,12 +18,11 @@ var activePlayer = player1;
 
 //Backend Logic
 
-// function rollDie() {
-//   var dieResult = Math.floor((Math.random() * 6 ) + 1);
-//   return dieResult;
-// }
-
 function rollDice() {
+  // This function rolls the dice,
+  // determines if either value is a 1,
+  // then concatenates the values together,
+  // and returns that value as 'scoreThisRoll'.
   var die1Result = Math.floor((Math.random() * 6 ) + 1);
   var die2Result = Math.floor((Math.random() * 6 ) + 1);
 
@@ -42,6 +41,8 @@ function rollDice() {
 }
 
 function switchActivePlayer() {
+  // Function that determines which player
+  // is currently active, then switches.
   if (player1.active === true)
   {
     player1.active = false;
@@ -59,12 +60,15 @@ function switchActivePlayer() {
 function endTurnOn1() {
   // Reduces points earned this turn to 0
   activePlayer.scoreThisTurn = 0;
+  // Placeholder alert.
   alert("Turn over! You rolled a 1!")
+  // Calls player switch function
   switchActivePlayer();
 }
 
 function endTurnOnHold() {
   // Increment total score by round score
   activePlayer.totalScore += activePlayer.scoreThisTurn;
+  // Calls player switch function
   switchActivePlayer();
 }

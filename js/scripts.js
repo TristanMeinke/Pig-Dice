@@ -1,11 +1,18 @@
 // GLOBAL Variables
 
+var scoreThisRoll;
+
 //Player Prototype:
 
-function Player() {
-  this.active = false;
-  this.score = 0;
+function Player(active, scoreThisTurn, totalScore) {
+  this.active = active;
+  this.scoreThisTurn = scoreThisTurn;
+  this.totalScore = totalScore;
 }
+
+var player1 = new Player(true, 0);
+var player2 = new Player(false, 0);
+var activePlayer = player1;
 
 //Backend Logic
 
@@ -19,9 +26,7 @@ function rollDie() {
   }
   else if (dieResult === NaN)
   {
-    // dieResult = Math.floor(Math.random() * 6);
-    // Recursive function call to avoid NaN...
-    rollDie();
+    dieResult = Math.floor(Math.random() * 6);
   }
   else
   {
@@ -36,25 +41,29 @@ function rollDice() {
 }
 
 function switchActivePlayer() {
-  // This is a placeholder for now.
-  if (Player1.active === true)
+  // FUNCTIONAL
+  if (player1.active === true)
   {
-    Player1.active === false;
-    Player2.active === true;
+    player1.active = false;
+    player2.active = true;
+    activePlayer = player2;
   }
-  if (Player2.active === true)
+  else if (player2.active === true)
   {
-    Player2.active === false;
-    Player1.active === true;
+    player2.active = false;
+    player1.active = true;
+    activePlayer = player1;
   }
 }
 
 function endTurnOn1() {
-  //set round score to 0
+  // Reduces points earned this turn to 0
+  activePlayer.scoreThisTurn = 0;
   switchActivePlayer();
 }
 
 function endTurnOnHold() {
-  //increment total score by round score
+  // Increment total score by round score
+  activePlayer.totalScore = activePlayer.totalScore + activePlayer.scoreThisTurn;
   switchActivePlayer();
 }

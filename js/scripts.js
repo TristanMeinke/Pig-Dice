@@ -10,38 +10,38 @@ function Player(active, scoreThisTurn, totalScore) {
   this.totalScore = totalScore;
 }
 
+// STARTING Variables...
+
 var player1 = new Player(true, 0);
 var player2 = new Player(false, 0);
 var activePlayer = player1;
 
 //Backend Logic
 
-function rollDie() {
-  var dieResult = Math.floor(Math.random() * 6);
+// function rollDie() {
+//   var dieResult = Math.floor((Math.random() * 6 ) + 1);
+//   return dieResult;
+// }
 
-  if (dieResult === 1)
+function rollDice() {
+  var die1Result = Math.floor((Math.random() * 6 ) + 1);
+  var die2Result = Math.floor((Math.random() * 6 ) + 1);
+
+  if (die1Result === 1 || die2Result === 1)
   {
-    // The following code ends the player's turn.
-    // endTurnOn1();
-  }
-  else if (dieResult === NaN)
-  {
-    dieResult = Math.floor(Math.random() * 6);
+    endTurnOn1();
+    return;
   }
   else
   {
-    return dieResult;
+    scoreThisRoll = die1Result + die2Result;
+    activePlayer.scoreThisTurn += scoreThisRoll;
+
+    return scoreThisRoll;
   }
 }
 
-function rollDice() {
-  var die1Result = rollDie();
-  var die2Result = rollDie();
-  return die1Result + die2Result;
-}
-
 function switchActivePlayer() {
-  // FUNCTIONAL
   if (player1.active === true)
   {
     player1.active = false;
@@ -59,11 +59,12 @@ function switchActivePlayer() {
 function endTurnOn1() {
   // Reduces points earned this turn to 0
   activePlayer.scoreThisTurn = 0;
+  alert("Turn over! You rolled a 1!")
   switchActivePlayer();
 }
 
 function endTurnOnHold() {
   // Increment total score by round score
-  activePlayer.totalScore = activePlayer.totalScore + activePlayer.scoreThisTurn;
+  activePlayer.totalScore += activePlayer.scoreThisTurn;
   switchActivePlayer();
 }

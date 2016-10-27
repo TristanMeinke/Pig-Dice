@@ -28,6 +28,8 @@ function rollDice() {
 
   if (die1Result === 1 || die2Result === 1)
   {
+    // Appends a line to the table in italics to denote that this line rolled a 1.
+    $('#scoreboard > tbody:last-child').append("<tr><td><em>" + activePlayer + "<em></td><td><em>" + player1.scoreThisRoll + "</em></td><td><em>" + player1.ScoreThisTurn + "</em></td><td><em>" + player1.totalScore + "</em></td><td><em>" + player2.scoreThisRoll + "</em></td><td><em>" + player2.ScoreThisTurn + "</em></td><td><em>" + player2.totalScore + "</em></td></tr>");
     endTurnOn1();
     return;
   }
@@ -35,7 +37,8 @@ function rollDice() {
   {
     scoreThisRoll = die1Result + die2Result;
     activePlayer.scoreThisTurn += scoreThisRoll;
-
+    // Appends a standard line to the table.
+    $('#scoreboard > tbody:last-child').append("<tr><td>" + activePlayer + "</td><td>"+ player1.scoreThisRoll + "</td><td>" + player1.ScoreThisTurn + "</td><td>" + player1.totalScore + "</td><td>" + player2.scoreThisRoll + "</td><td>" + player2.ScoreThisTurn + "</td><td>" + player2.totalScore + "</td></tr>");
     return scoreThisRoll;
   }
 }
@@ -71,33 +74,29 @@ function endTurnOnHold() {
   // Increment total score by round score
   activePlayer.totalScore += activePlayer.scoreThisTurn;
   activePlayer.scoreThisTurn = 0;
+  // Calls gameOver() function to evaluate the scores of each player.
+  gameOver();
   // Calls player switch function
   switchActivePlayer();
 }
 
 function gameOver() {
-  if (player1.totalScore <= 10 || player2.totalScore >= 10)
+  if (player1.totalScore >= 100 || player2.totalScore >= 100)
   {
-    alert("Game Over! Active Player wins!")
+    alert("Game Over! Active player wins!")
   }
 }
-
-function updateTable() {
-  var tblRef = document.getElementById(scoreboard);
-  var newRow = tblRef.insertRow(tblRef.rows.length);
-  var newCell = newRow.insertCell();
-}
-
 // ***FRONTEND LOGIC***
 
 $(document).ready(function () {
 
   $("#roll").click(function(event) {
     rollDice();
-    $('#scoreboard > tbody:last-child').append('<tr>player1.scoreThisRoll</tr>player1.ScoreThisTurn<tr>player1.totalScore</tr><tr>player2.scoreThisRoll</tr>player2.ScoreThisTurn<tr>player2.totalScore</tr>');
   });
+
   $("#hold").click(function(event) {
     endTurnOnHold();
-    gameOver();
+    //Appends a bolded line to the table, to denote that the player held here instead of rolling.
+    $('#scoreboard > tbody:last-child').append("<tr><td><strong>" + activePlayer + "<strong></td><td><strong>" + player1.scoreThisRoll + "</strong></td><td><strong>" + player1.ScoreThisTurn + "</strong></td><td><strong>" + player1.totalScore + "</strong></td><td><strong>" + player2.scoreThisRoll + "</strong></td><td><strong>" + player2.ScoreThisTurn + "</strong></td><td><strong>" + player2.totalScore + "</strong></td></tr>");
   });
 });

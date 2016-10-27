@@ -15,35 +15,45 @@
       <h1>Pig Dice</h1>
     </div>
 
-    <h2>Instructions:</h2>
-    <p></p>
+    <h2>Instructions</h2>
+
+    <h3>Roll The Dice...</h3>
+    <ol>
+      <li>If a one is showing, end your turn and lose any points you accumulated this turn.</li>
+      <li>If a one is not showing, add the total to your points for this turn.</li>
+      <li>When you feel you've earned enough points to be safe, press 'hold' to pass the dice and secure your points.</li>
+      <li>The first player to reach 100 points is the winner!</li>
+    </ol>
 
     <hr>
 
-    <div class = "row">
-      <div class="col-xs-6">
-        <button type="button" id="roll" class = "btn btn-roll btn-gray">Roll!</button>
+    <div class = "jumbotron">
+      <div class = "row">
+        <div class="col-xs-6">
+          <button type="button" id="roll" class = "btn btn-roll btn-gray">Roll!</button>
+        </div>
+        <div class="col-xs-6">
+          <button type="button" id="hold" class = "btn btn-roll btn-gray">Hold</button>
+        </div>
       </div>
-      <div class="col-xs-6">
-        <button type="button" id="hold" class = "btn btn-roll btn-gray">Hold</button>
-      </div>
+
+      <br>
+
+      <table class = "table table-bordered" id = "scoreboard">
+        <thead>
+          <th>Active Player:</th>
+          <th>Player 1 Rolls:</th>
+          <th>Score This Turn:</th>
+          <th>Total Score:</th>
+          <th>Player 2 Rolls:</th>
+          <th>Score This Turn:</th>
+          <th>Total Score:</th>
+        </thead>
+        <tbody>
+
+        </tbody>
+      </table>
     </div>
-
-    <br>
-
-    <table class = "table table-bordered" id = "scoreboard">
-      <thead>
-        <th>Player 1 Rolls:</th>
-        <th>Score This Turn:</th>
-        <th>Total Score:</th>
-        <th>Player 2 Rolls:</th>
-        <th>Score This Turn:</th>
-        <th>Total Score:</th>
-      </thead>
-      <tbody>
-
-      </tbody>
-    </table>
 
   </body>
 </html>

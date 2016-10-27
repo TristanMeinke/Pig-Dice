@@ -67,6 +67,11 @@ body {
   background-color: #888;
 }
 
+h2 {
+  text-align: center;
+  text-decoration: underline;
+}
+
 h4 {
   text-align: center;
   color: #ff0000;

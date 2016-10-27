@@ -12,8 +12,8 @@ function Player(active, scoreThisTurn, totalScore) {
 
 // STARTING Variables...
 
-var player1 = new Player(true, 0);
-var player2 = new Player(false, 0);
+var player1 = new Player(true, 0, 0);
+var player2 = new Player(false, 0, 0);
 var activePlayer = player1;
 
 //Backend Logic
@@ -61,6 +61,7 @@ function endTurnOn1() {
   // Reduces points earned this turn to 0
   activePlayer.scoreThisTurn = 0;
   // Placeholder alert.
+  // This should ultimately be appended to the list or table.
   alert("Turn over! You rolled a 1!")
   // Calls player switch function
   switchActivePlayer();
@@ -69,6 +70,34 @@ function endTurnOn1() {
 function endTurnOnHold() {
   // Increment total score by round score
   activePlayer.totalScore += activePlayer.scoreThisTurn;
+  activePlayer.scoreThisTurn = 0;
   // Calls player switch function
   switchActivePlayer();
 }
+
+function gameOver() {
+  if (player1.totalScore <= 10 || player2.totalScore >= 10)
+  {
+    alert("Game Over! Active Player wins!")
+  }
+}
+
+function updateTable() {
+  var tblRef = document.getElementById(scoreboard);
+  var newRow = tblRef.insertRow(tblRef.rows.length);
+  var newCell = newRow.insertCell();
+}
+
+// ***FRONTEND LOGIC***
+
+$(document).ready(function () {
+
+  $("#roll").click(function(event) {
+    rollDice();
+    $('#scoreboard > tbody:last-child').append('<tr>player1.scoreThisRoll</tr>player1.ScoreThisTurn<tr>player1.totalScore</tr><tr>player2.scoreThisRoll</tr>player2.ScoreThisTurn<tr>player2.totalScore</tr>');
+  });
+  $("#hold").click(function(event) {
+    endTurnOnHold();
+    gameOver();
+  });
+});

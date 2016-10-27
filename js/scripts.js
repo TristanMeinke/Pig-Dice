@@ -29,7 +29,7 @@ function rollDice() {
   if (die1Result === 1 || die2Result === 1)
   {
     // Appends a line to the table in italics to denote that this line rolled a 1.
-    $('#scoreboard > tbody:last-child').append("<tr><td><em>" + activePlayer + "<em></td><td><em>" + 0 + "</em></td><td><em>" + player1.scoreThisTurn + "</em></td><td><em>" + player1.totalScore + "</em></td><td><em>" + 0 + "</em></td><td><em>" + player2.scoreThisTurn + "</em></td><td><em>" + player2.totalScore + "</em></td></tr>");
+    $('#scoreboard > tbody:last-child').append("<tr><td><em>" + activePlayer + "<em></td><td><em>" + 0 + "</em></td><td><em>" + player1.scoreThisTurn + "</em></td><td><em>" + player1.totalScore + "</em></td><td><em>" + player2.scoreThisTurn + "</em></td><td><em>" + player2.totalScore + "</em></td></tr>");
     endTurnOn1();
     return;
   }
@@ -38,7 +38,7 @@ function rollDice() {
     scoreThisRoll = die1Result + die2Result;
     activePlayer.scoreThisTurn += scoreThisRoll;
     // Appends a standard line to the table.
-    $('#scoreboard > tbody:last-child').append("<tr><td>" + activePlayer + "</td><td>"+ scoreThisRoll + "</td><td>" + player1.scoreThisTurn + "</td><td>" + player1.totalScore + "</td><td>" + scoreThisRoll + "</td><td>" + player2.scoreThisTurn + "</td><td>" + player2.totalScore + "</td></tr>");
+    $('#scoreboard > tbody:last-child').append("<tr><td>" + activePlayer + "</td><td>"+ scoreThisRoll + "</td><td>" + player1.scoreThisTurn + "</td><td>" + player1.totalScore + "</td><td>" + player2.scoreThisTurn + "</td><td>" + player2.totalScore + "</td></tr>");
     return scoreThisRoll;
   }
 }
@@ -97,6 +97,6 @@ $(document).ready(function () {
   $("#hold").click(function(event) {
     endTurnOnHold();
     //Appends a bolded line to the table, to denote that the player held here instead of rolling.
-    $('#scoreboard > tbody:last-child').append("<tr><td><strong>" + activePlayer + "<strong></td><td><strong>" + scoreThisRoll + "</strong></td><td><strong>" + player1.scoreThisTurn + "</strong></td><td><strong>" + player1.totalScore + "</strong></td><td><strong>" + scoreThisRoll + "</strong></td><td><strong>" + player2.scoreThisTurn + "</strong></td><td><strong>" + player2.totalScore + "</strong></td></tr>");
+    $('#scoreboard > tbody:last-child').append("<tr><td><strong>" + activePlayer + "<strong></td><td><strong>" + scoreThisRoll + "</strong></td><td><strong>" + player1.scoreThisTurn + "</strong></td><td><strong>" + player1.totalScore + "</strong></td><td><strong>" + player2.scoreThisTurn + "</strong></td><td><strong>" + player2.totalScore + "</strong></td></tr>");
   });
 });
